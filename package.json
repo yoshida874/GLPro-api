@@ -4,6 +4,7 @@
   "description": "Express 卒業制作",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon  --exec ts-node index.ts",
     "test": "jest",
     "format": "prettier --write \"./**/*.{ts,js}\""
   },
@@ -31,6 +32,7 @@
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "jest": "^27.3.1",
+    "nodemon": "^2.0.14",
     "prettier": "2.4.1",
     "ts-jest": "^27.0.7",
     "ts-node": "^10.3.1",
