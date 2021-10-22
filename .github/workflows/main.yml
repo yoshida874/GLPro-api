@@ -1,0 +1,15 @@
+on:
+  push:
+    branches:
+      - develop
+
+name: format
+jobs:
+  lint:
+    name: Lint check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@v2
+      - run: npm install
+      - run: npm run format
