@@ -18,8 +18,8 @@ model User {
   createdAt        DateTime  @default(now())                                    //作成時刻
   updatedAt        DateTime  @updatedAt                                         //更新時刻
   reviews          Review []                                                    //1対多でユーザーもレビューを持つ
-  questions        Question[]                                                   //質問を持つ
-  answers          Answer[]                                                     //回答を持つ
+  questions        Question []                                                   //質問を持つ
+  answers          Answer []                                                     //回答を持つ
 }
 
 //分類
@@ -28,7 +28,7 @@ model Category {
   category_name    String  @db.VarChar(255)                                     //分類名
   createdAt        DateTime  @default(now())
   reviews          Review []
-  questions        Question[]
+  questions        Question []
 }
 
 //地区
@@ -37,7 +37,7 @@ model Area {
   area_name        String  @db.VarChar(255)                                     //地区名
   createdAt        DateTime  @default(now())
   reviews          Review []
-  questions        Question[]
+  questions        Question []
 }
 
 //レビュー
@@ -64,9 +64,9 @@ model Question {
   area_Id          Int?
   category_id      Int?
   question_title   String                                                       //タイトル
-  question_comment String                                                       //コメント
+  question_content String                                                       //質問内容
   createdAt        DateTime  @default(now())
-  answers          Answer[]
+  answers          Answer []
   
 }
 
@@ -79,6 +79,6 @@ model Answer {
   user_Id          Int
   question_id      Int
   answer_title     String
-  answer_comment   String
+  answer_content   String
   createdAt        DateTime  @default(now())
 }
