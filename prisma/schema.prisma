@@ -49,7 +49,7 @@ model Review {
   user_Id          Int                                                          //ユーザーId
   area_Id          Int                                                          //地区Id
   category_id      Int                                                          //分類Id
-  review_comment   String?                                                      //コメント
+  review_content   String?                                                      //レビュー内容
   evaluation       Int　　　　　　　　　　　　　　　　　　　　　　　　　　　　　    //評価　　
   createdAt        DateTime  @default(now())
 }
