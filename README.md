@@ -29,10 +29,10 @@ prisma studio
 ## DB 設定
 
 マイグレーションの実行<br>
-`prisma migrate dev --name init --preview-feature`
+`npx prisma migrate dev --name init --preview-feature`
 
 クライアントコードの作成<br>
-`prisma generate`
+`npx prisma generate`
 
 ## 開発環境立ち上げまで
 
