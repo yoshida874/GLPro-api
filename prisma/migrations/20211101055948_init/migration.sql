@@ -1,0 +1,25 @@
+BEGIN TRY
+
+BEGIN TRAN;
+
+-- AlterTable
+ALTER TABLE [dbo].[Area] ALTER COLUMN [area_name] NVARCHAR(1000) NOT NULL;
+
+-- AlterTable
+ALTER TABLE [dbo].[Category] ALTER COLUMN [category_name] NVARCHAR(1000) NOT NULL;
+
+-- AlterTable
+ALTER TABLE [dbo].[User] ALTER COLUMN [password] NVARCHAR(1000) NOT NULL;
+
+COMMIT TRAN;
+
+END TRY
+BEGIN CATCH
+
+IF @@TRANCOUNT > 0
+BEGIN
+    ROLLBACK TRAN;
+END;
+THROW
+
+END CATCH
