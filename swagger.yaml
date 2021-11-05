@@ -18,8 +18,12 @@ paths:
         200:
           description: '成功時のレスポンス'
           schema:
-            $ref: '#/definitions/area_details'
-
+            type: object
+            properties:
+              area:
+                $ref: '#/definitions/area_name'
+              area_details:
+                $ref: '#/definitions/area_details'
 definitions:
   area_name:
     type: 'object'
