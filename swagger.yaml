@@ -26,11 +26,8 @@ paths:
                 $ref: '#/definitions/area_details'
 definitions:
   area_name:
-    type: 'object'
-    properties:
-      name:
-        type: 'string'
-        example: 'name'
+    type: 'string'
+    example: '渋谷区'
     items:
       $ref: '#/definitions/area_details' # Storeを呼び出す
   area_details:
