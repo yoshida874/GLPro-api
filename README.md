@@ -47,3 +47,7 @@ prisma studio
 
 - 命名規則などは Google Javascript style ガイドに従う<br>
   => [Google style ガイド](https://w.atwiki.jp/aias-jsstyleguide2/pages/1.html)
+
+## Github 運用ルール
+
+[Github 運用について](https://github.com/yoshida874/GLPro-web/blob/develop/documents/githubRule.md)
