@@ -15,19 +15,19 @@ generator client {
 model User {
   id               Int  @default(autoincrement()) @id                           //連番発行
   email            String  @unique                                              //メールアドレス
-  password         String  @db.VarChar(255)                                     //パスワード
-  created_at        DateTime  @default(now())                                    //作成時刻
-  updated_at        DateTime  @updatedAt                                         //更新時刻
+  password         String                                                       //パスワード
+  created_at       DateTime  @default(now())                                    //作成時刻
+  updated_at       DateTime  @updatedAt                                         //更新時刻
   reviews          Review []                                                    //1対多でユーザーもレビューを持つ
-  questions        Question []                                                   //質問を持つ
-  answers          Answer []                                                     //回答を持つ
+  questions        Question []                                                  //質問を持つ
+  answers          Answer []                                                    //回答を持つ
 }
 
 //分類
 model Category {
   id               Int  @id @default(autoincrement())
-  category_name    String  @db.VarChar(255)                                     //分類名
-  created_at        DateTime  @default(now())
+  category_name    String                                                       //分類名
+  created_at       DateTime  @default(now())
   reviews          Review []
   questions        Question []
 }
@@ -35,8 +35,8 @@ model Category {
 //地区
 model Area {
   id               Int  @id @default(autoincrement())
-  area_name        String  @db.VarChar(255)                                     //地区名
-  created_at        DateTime  @default(now())
+  area_name        String                                                       //地区名
+  created_at       DateTime  @default(now())
   reviews          Review []
   questions        Question []
 }
@@ -44,29 +44,29 @@ model Area {
 //レビュー
 model Review {
   id               Int  @id @default(autoincrement())
-  user             User @relation(fields: [user_Id], references: [id])          //ユーザーモデルとのリレーションを確率
-  area             Area @relation(fields: [area_Id], references: [id])          //地区のリレーション
+  user             User @relation(fields: [user_id], references: [id])          //ユーザーモデルとのリレーションを確率
+  area             Area @relation(fields: [area_id], references: [id])          //地区のリレーション
   category         Category @relation(fields: [category_id], references: [id])  //分類のリレーション
-  user_Id          Int                                                          //ユーザーId
-  area_Id          Int                                                          //地区Id
+  user_id          Int                                                          //ユーザーId
+  area_id          Int                                                          //地区Id
   category_id      Int                                                          //分類Id
   review_content   String?                                                      //レビュー内容
   evaluation       Int                                                          //評価
-  created_at        DateTime  @default(now())
+  created_at       DateTime  @default(now())
 }
 
 //質問
 model Question {
   id               Int @id @default(autoincrement())
-  user             User @relation(fields: [user_Id], references: [id])
-  area             Area? @relation(fields: [area_Id], references: [id])
+  user             User @relation(fields: [user_id], references: [id])
+  area             Area? @relation(fields: [area_id], references: [id])
   category         Category? @relation(fields: [category_id], references: [id])
-  user_Id          Int                                                          
-  area_Id          Int?
+  user_id          Int                                                          
+  area_id          Int?
   category_id      Int?
   question_title   String                                                       //タイトル
   question_content String                                                       //質問内容
-  created_at        DateTime  @default(now())
+  created_at       DateTime  @default(now())
   answers          Answer []
   
 }
@@ -75,11 +75,11 @@ model Question {
 model Answer {
   id               Int @id @default(autoincrement())
   //更新,削除されたときに他のモデルに影響を及ぼさないように設定
-  user             User @relation(fields: [user_Id], references: [id], onUpdate: NoAction, onDelete: NoAction)
+  user             User @relation(fields: [user_id], references: [id], onUpdate: NoAction, onDelete: NoAction)
   question         Question @relation(fields: [question_id], references: [id])
-  user_Id          Int
+  user_id          Int
   question_id      Int
   answer_title     String
   answer_content   String
-  created_at        DateTime  @default(now())
+  created_at       DateTime  @default(now())
 }
