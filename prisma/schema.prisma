@@ -4,6 +4,7 @@
 datasource db {
   provider = "sqlserver"
   url      = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
 generator client {
@@ -15,8 +16,8 @@ model User {
   id               Int  @default(autoincrement()) @id                           //連番発行
   email            String  @unique                                              //メールアドレス
   password         String  @db.VarChar(255)                                     //パスワード
-  createdAt        DateTime  @default(now())                                    //作成時刻
-  updatedAt        DateTime  @updatedAt                                         //更新時刻
+  created_at        DateTime  @default(now())                                    //作成時刻
+  updated_at        DateTime  @updatedAt                                         //更新時刻
   reviews          Review []                                                    //1対多でユーザーもレビューを持つ
   questions        Question []                                                   //質問を持つ
   answers          Answer []                                                     //回答を持つ
@@ -26,7 +27,7 @@ model User {
 model Category {
   id               Int  @id @default(autoincrement())
   category_name    String  @db.VarChar(255)                                     //分類名
-  createdAt        DateTime  @default(now())
+  created_at        DateTime  @default(now())
   reviews          Review []
   questions        Question []
 }
@@ -35,7 +36,7 @@ model Category {
 model Area {
   id               Int  @id @default(autoincrement())
   area_name        String  @db.VarChar(255)                                     //地区名
-  createdAt        DateTime  @default(now())
+  created_at        DateTime  @default(now())
   reviews          Review []
   questions        Question []
 }
@@ -50,8 +51,8 @@ model Review {
   area_Id          Int                                                          //地区Id
   category_id      Int                                                          //分類Id
   review_content   String?                                                      //レビュー内容
-  evaluation       Int　　　　　　　　　　　　　　　　　　　　　　　　　　　　　    //評価　　
-  createdAt        DateTime  @default(now())
+  evaluation       Int                                                          //評価
+  created_at        DateTime  @default(now())
 }
 
 //質問
@@ -65,7 +66,7 @@ model Question {
   category_id      Int?
   question_title   String                                                       //タイトル
   question_content String                                                       //質問内容
-  createdAt        DateTime  @default(now())
+  created_at        DateTime  @default(now())
   answers          Answer []
   
 }
@@ -80,5 +81,5 @@ model Answer {
   question_id      Int
   answer_title     String
   answer_content   String
-  createdAt        DateTime  @default(now())
+  created_at        DateTime  @default(now())
 }

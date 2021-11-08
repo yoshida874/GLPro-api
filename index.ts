@@ -1,8 +1,8 @@
 import express from 'express';
 const app: express.Express = express();
-import router from './routes/apiRoute';
+import { apiRouter } from './routes/ApiRouter';
 
-app.use('/', router);
+app.use('/', apiRouter);
 
 app.listen(8080, () => {
   console.log('start server 8080');
