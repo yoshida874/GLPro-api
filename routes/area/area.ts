@@ -16,7 +16,7 @@ router.get('/:id', async (req: Request, res: Response): Promise<void> => {
     },
   });
   const areaName = area[0].area_name;
-  const area_details = await prisma.area
+  const areaDetails = await prisma.area
     .findUnique({
       where: {
         id: Number(id),
@@ -24,7 +24,7 @@ router.get('/:id', async (req: Request, res: Response): Promise<void> => {
     })
     .reviews(); // areaのreviews[]をリレーションして取得
 
-  res.json({ name: areaName, area_details });
+  res.json({ name: areaName, areaDetails });
 });
 
 export const area = router;
