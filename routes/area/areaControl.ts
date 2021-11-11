@@ -1,12 +1,19 @@
 import { PrismaClient } from '@prisma/client';
-import { Response, Request, Router } from 'express';
 
 const prisma = new PrismaClient();
-const router = Router();
 
-// GET /areadetails
-router.get('/:id', async (req: Request, res: Response): Promise<void> => {
-  const { id } = req.params;
+export const getArea = async () => {
+  const area = await prisma.area.findMany({
+    select: {
+      id: true,
+      area_name: true,
+    },
+  });
+
+  return area;
+};
+
+export const getAreaDetail = async (id: string) => {
   const area = await prisma.area.findMany({
     where: {
       id: Number(id), // Numberにキャスト
@@ -24,7 +31,12 @@ router.get('/:id', async (req: Request, res: Response): Promise<void> => {
     })
     .reviews(); // areaのreviews[]をリレーションして取得
 
-  res.json({ name: areaName, areaDetails });
-});
+  const category = await prisma.category.findMany({
+    select: {
+      id: true,
+      category_name: true,
+    },
+  });
 
-export const area = router;
+  return [areaName, areaDetails, category];
+};

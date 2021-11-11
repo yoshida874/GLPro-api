@@ -1,5 +1,6 @@
 import { Router } from 'express';
-import { area } from './area/area';
+import { area } from './area/areaService';
+
 const router = Router();
 
 router.use('/area', area);
