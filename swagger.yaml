@@ -24,6 +24,8 @@ paths:
                 $ref: '#/definitions/area_name'
               area_details:
                 $ref: '#/definitions/area_details'
+              category:
+                $ref: '#/definitions/category'
   /review/create:
     post:
       summary: '新規レビュー作成API'
@@ -80,3 +82,12 @@ definitions:
         type: 'string'
         example: '20xx-xx-xx'
         format: 'date'
+  category:
+    type: 'object'
+    properties:
+      id:
+        type: 'integer'
+        format: 'int64'
+      category_name:
+        type: 'string'
+        example: '治安'
