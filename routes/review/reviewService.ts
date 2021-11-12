@@ -10,7 +10,7 @@ interface paramType {
   evaluation: number;
 }
 
-export const postReview = async (reviewParam: paramType) => {
+export const postReview = async (reviewParam: paramType): Promise<void> => {
   await prisma.review.create({
     data: {
       user_id: reviewParam.user_id,
@@ -20,5 +20,5 @@ export const postReview = async (reviewParam: paramType) => {
       evaluation: reviewParam.evaluation,
     },
   });
-  return 'success';
+  return;
 };
