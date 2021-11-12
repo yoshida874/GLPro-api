@@ -26,12 +26,37 @@ paths:
                 $ref: '#/definitions/area_details'
               category:
                 $ref: '#/definitions/category'
+  /review/create:
+    post:
+      summary: '新規レビュー作成API'
+      description: 'リクエストされたパラメータのレビューを作成します。'
+      parameters:
+        - in: body
+          name: reviewParam
+          description: オブジェクトのキーと型
+          schema:
+            type: object
+            properties:
+              user_id:
+                type: number
+              area_id:
+                type: number
+              category_id:
+                type: number
+              review_content:
+                type: string
+                example: 'content'
+              evaluation:
+                type: number
+      responses:
+        200:
+          description: 'message : success'
+        400:
+          description: 'message : failure, error: e'
 definitions:
   area_name:
     type: 'string'
     example: '渋谷区'
-    items:
-      $ref: '#/definitions/area_details' # Storeを呼び出す
   area_details:
     type: 'object'
     properties:
