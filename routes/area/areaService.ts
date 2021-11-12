@@ -6,7 +6,7 @@ const router = Router();
 /**
  * 地区一覧を取得する
  */
-router.get('', async (req: Request, res: Response): Promise<void> => {
+router.get('/', async (req: Request, res: Response): Promise<void> => {
   const area = await getArea();
   res.json(area);
 });
