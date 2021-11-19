@@ -3,12 +3,39 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 async function main(): Promise<void> {
+  // RegionSeedCreate
+  await prisma.region.upsert({
+    where: { region_name: '都心・副都心エリア' },
+    update: { region_name: '都心・副都心エリア' },
+    create: {
+      region_name: '都心・副都心エリア',
+    },
+  });
+  await prisma.region.upsert({
+    where: { region_name: '城東エリア' },
+    update: { region_name: '城東エリア' },
+    create: {
+      region_name: '城東エリア',
+    },
+  });
+  await prisma.region.upsert({
+    where: { region_name: '城南エリア' },
+    update: { region_name: '城南エリア' },
+    create: {
+      region_name: '城南エリア',
+    },
+  });
   // AreaSeedCreate
   await prisma.area.upsert({
     where: { area_name: '渋谷区' },
     update: { area_name: '渋谷区' },
     create: {
       area_name: '渋谷区',
+      region: {
+        connect: {
+          region_name: '都心・副都心エリア',
+        },
+      },
     },
   });
   await prisma.area.upsert({
@@ -16,6 +43,11 @@ async function main(): Promise<void> {
     update: { area_name: '足立区' },
     create: {
       area_name: '足立区',
+      region: {
+        connect: {
+          region_name: '城東エリア',
+        },
+      },
     },
   });
   await prisma.area.upsert({
@@ -23,6 +55,11 @@ async function main(): Promise<void> {
     update: { area_name: '新宿区' },
     create: {
       area_name: '新宿区',
+      region: {
+        connect: {
+          region_name: '都心・副都心エリア',
+        },
+      },
     },
   });
 
