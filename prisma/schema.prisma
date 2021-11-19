@@ -2,7 +2,7 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 datasource db {
-  provider = "sqlserver"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
   shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
@@ -26,7 +26,7 @@ model User {
 //分類
 model Category {
   id               Int  @id @default(autoincrement())
-  category_name    String                                                       //分類名
+  category_name    String    @unique                                                   //分類名
   created_at       DateTime  @default(now())
   reviews          Review []
   questions        Question []
@@ -35,7 +35,7 @@ model Category {
 //地区
 model Area {
   id               Int  @id @default(autoincrement())
-  area_name        String                                                       //地区名
+  area_name        String    @unique                                                   //地区名
   created_at       DateTime  @default(now())
   reviews          Review []
   questions        Question []
