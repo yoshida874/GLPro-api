@@ -19,8 +19,18 @@ CREATE TABLE "Category" (
 );
 
 -- CreateTable
+CREATE TABLE "Region" (
+    "id" SERIAL NOT NULL,
+    "region_name" TEXT NOT NULL,
+    "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "Region_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "Area" (
     "id" SERIAL NOT NULL,
+    "region_id" INTEGER,
     "area_name" TEXT NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
@@ -72,7 +82,13 @@ CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 CREATE UNIQUE INDEX "Category_category_name_key" ON "Category"("category_name");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "Region_region_name_key" ON "Region"("region_name");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "Area_area_name_key" ON "Area"("area_name");
+
+-- AddForeignKey
+ALTER TABLE "Area" ADD CONSTRAINT "Area_region_id_fkey" FOREIGN KEY ("region_id") REFERENCES "Region"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Review" ADD CONSTRAINT "Review_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
