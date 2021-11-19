@@ -8,6 +8,9 @@
     "test": "jest",
     "format": "prettier --write \"./**/*.{ts,js}\""
   },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/yoshida874/GLPro-backend.git"
