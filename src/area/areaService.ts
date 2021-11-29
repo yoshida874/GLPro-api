@@ -1,8 +1,9 @@
 import { PrismaClient } from '@prisma/client';
+import { GetArea, GetAreaDetail } from './areaInterface';
 
 const prisma = new PrismaClient();
 
-export const getArea = async () => {
+export const getArea = async (): Promise<GetArea[]> => {
   const area = await prisma.area.findMany({
     select: {
       id: true,
@@ -13,7 +14,7 @@ export const getArea = async () => {
   return area;
 };
 
-export const getAreaDetail = async (id: string) => {
+export const getAreaDetail = async (id: string): Promise<GetAreaDetail> => {
   const area = await prisma.area.findMany({
     where: {
       id: Number(id), // Numberにキャスト
@@ -38,5 +39,5 @@ export const getAreaDetail = async (id: string) => {
     },
   });
 
-  return [areaName, areaDetails, category];
+  return { name: areaName, areaDetails, category };
 };

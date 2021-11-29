@@ -1,0 +1,236 @@
+{
+	"components": {
+		"examples": {},
+		"headers": {},
+		"parameters": {},
+		"requestBodies": {},
+		"responses": {},
+		"schemas": {
+			"GetArea": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"area_name": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"id",
+					"area_name"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Review": {
+				"properties": {
+					"created_at": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"evaluation": {
+						"type": "number",
+						"format": "double"
+					},
+					"review_content": {
+						"type": "string",
+						"nullable": true
+					},
+					"category_id": {
+						"type": "number",
+						"format": "double"
+					},
+					"area_id": {
+						"type": "number",
+						"format": "double"
+					},
+					"user_id": {
+						"type": "number",
+						"format": "double"
+					},
+					"id": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"created_at",
+					"evaluation",
+					"review_content",
+					"category_id",
+					"area_id",
+					"user_id",
+					"id"
+				],
+				"type": "object",
+				"description": "Model Review"
+			},
+			"GetAreaDetail": {
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"areaDetails": {
+						"items": {
+							"$ref": "#/components/schemas/Review"
+						},
+						"type": "array"
+					},
+					"category": {
+						"items": {
+							"properties": {
+								"category_name": {
+									"type": "string"
+								},
+								"id": {
+									"type": "number",
+									"format": "double"
+								}
+							},
+							"required": [
+								"category_name",
+								"id"
+							],
+							"type": "object"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"name",
+					"areaDetails",
+					"category"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"PostReviewBody": {
+				"properties": {
+					"user_id": {
+						"type": "number",
+						"format": "double"
+					},
+					"area_id": {
+						"type": "number",
+						"format": "double"
+					},
+					"category_id": {
+						"type": "number",
+						"format": "double"
+					},
+					"review_content": {
+						"type": "string"
+					},
+					"evaluation": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"user_id",
+					"area_id",
+					"category_id",
+					"review_content",
+					"evaluation"
+				],
+				"type": "object",
+				"additionalProperties": false
+			}
+		},
+		"securitySchemes": {}
+	},
+	"info": {
+		"title": "glpro-api",
+		"version": "1.0.0",
+		"description": "Express 卒業制作",
+		"license": {
+			"name": "ISC"
+		},
+		"contact": {}
+	},
+	"openapi": "3.0.0",
+	"paths": {
+		"/area": {
+			"get": {
+				"operationId": "GetArea",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/GetArea"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"description": "すべての地区のidと名前を返す",
+				"summary": "地区一覧取得",
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/area/{id}": {
+			"get": {
+				"operationId": "GetAreaDetail",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GetAreaDetail"
+								}
+							}
+						}
+					}
+				},
+				"description": "指定された地区idの地区名、地区の詳細情報を返す。",
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/review/create": {
+			"post": {
+				"operationId": "PostReview",
+				"responses": {
+					"204": {
+						"description": "No content"
+					}
+				},
+				"description": "レビューを登録する",
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/PostReviewBody"
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"servers": [
+		{
+			"url": "/"
+		}
+	]
+}
