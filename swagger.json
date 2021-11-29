@@ -105,6 +105,43 @@
 				"type": "object",
 				"additionalProperties": false
 			},
+			"GetRegion": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"region_name": {
+						"type": "string"
+					},
+					"area": {
+						"items": {
+							"properties": {
+								"area_name": {
+									"type": "string"
+								},
+								"id": {
+									"type": "number",
+									"format": "double"
+								}
+							},
+							"required": [
+								"area_name",
+								"id"
+							],
+							"type": "object"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"id",
+					"region_name",
+					"area"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
 			"PostReviewBody": {
 				"properties": {
 					"user_id": {
@@ -170,7 +207,7 @@
 					}
 				},
 				"description": "すべての地区のidと名前を返す",
-				"summary": "地区一覧取得",
+				"summary": "地区一覧API",
 				"security": [],
 				"parameters": []
 			}
@@ -191,6 +228,7 @@
 					}
 				},
 				"description": "指定された地区idの地区名、地区の詳細情報を返す。",
+				"summary": "地区詳細API",
 				"security": [],
 				"parameters": [
 					{
@@ -204,6 +242,30 @@
 				]
 			}
 		},
+		"/region": {
+			"get": {
+				"operationId": "PostReview",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/GetRegion"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"description": "地区一覧と地域分類を取得する",
+				"summary": "地域分類取得API",
+				"security": [],
+				"parameters": []
+			}
+		},
 		"/review/create": {
 			"post": {
 				"operationId": "PostReview",
@@ -213,6 +275,7 @@
 					}
 				},
 				"description": "レビューを登録する",
+				"summary": "レビュー登録API",
 				"security": [],
 				"parameters": [],
 				"requestBody": {

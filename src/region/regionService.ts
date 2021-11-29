@@ -1,8 +1,9 @@
 import { PrismaClient } from '@prisma/client';
+import { GetRegion } from './regionInterface';
 
 const prisma = new PrismaClient();
 
-export const getRegion = async () => {
+export const getRegion = async (): Promise<GetRegion[]> => {
   const region = await prisma.region.findMany({
     select: {
       id: true,
