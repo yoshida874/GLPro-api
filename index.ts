@@ -2,7 +2,7 @@ import express, { Response as ExResponse, Request as ExRequest } from 'express';
 const cors = require('cors');
 const app: express.Express = express();
 // import { apiRouter } from './routes/ApiRouter';
-import { RegisterRoutes } from './build/routes';
+import { RegisterRoutes } from './src/routes';
 import swaggerUi from 'swagger-ui-express';
 
 app.use(express.json());
@@ -17,7 +17,7 @@ app.use(
 
 RegisterRoutes(app);
 app.use('/docs', swaggerUi.serve, async (_req: ExRequest, res: ExResponse) => {
-  return res.send(swaggerUi.generateHTML(await import('./build/swagger.json')));
+  return res.send(swaggerUi.generateHTML(await import('./swagger.json')));
 });
 // app.use('/', apiRouter);
 

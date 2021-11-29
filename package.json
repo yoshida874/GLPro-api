@@ -7,7 +7,9 @@
     "dev": "nodemon  --exec ts-node index.ts",
     "test": "jest",
     "format": "prettier --write \"./**/*.{ts,js}\"",
-    "build": "tsoa spec-and-routes && tsc"
+    "build": "tsoa spec-and-routes && tsc",
+    "route": "yarn run tsoa routes",
+    "swagger": "yarn run tsoa swagger"
   },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"
