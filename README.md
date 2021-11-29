@@ -17,6 +17,12 @@ GLPro のバックエンド
 開発環境起動  
 `npm run dev`<br>
 
+Router ファイル更新  
+`npm run router`<br>
+
+Swagger 更新  
+`npm run Swagger`<br>
+
 Prettier  
 `npm run format`<br>
 
