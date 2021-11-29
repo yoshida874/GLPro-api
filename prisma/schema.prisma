@@ -43,8 +43,8 @@ model Region {
 //地区
 model Area {
   id               Int  @id @default(autoincrement())
-  region           Region? @relation(fields: [region_id], references: [id])
-  region_id        Int?
+  region           Region @relation(fields: [region_id], references: [id])
+  region_id        Int
   area_name        String    @unique                                                   //地区名
   created_at       DateTime  @default(now())
   reviews          Review []
