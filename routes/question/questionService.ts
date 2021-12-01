@@ -1,23 +1,25 @@
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
+
 interface question {
   area_id?: number;
   category_id?: number;
 }
-export const getRefineQuestion = async (areaId: string, categoryId: string) => {
+
+export const getRefineQuestion = async (
+  areaId: string | undefined,
+  categoryId: string | undefined
+) => {
   // Whereで指定する項目
-  let questionWhere: question = {};
-  if (areaId !== '' || '' !== categoryId) {
-    if (areaId !== '') {
-      questionWhere.area_id = Number(areaId);
-      if (categoryId !== '') {
-        questionWhere.category_id = Number(categoryId);
-      }
-    } else {
-      questionWhere.category_id = Number(categoryId);
-    }
+  const questionWhere: question = {};
+  if (typeof areaId !== 'undefined') {
+    questionWhere.area_id = Number(areaId);
   }
+  if (typeof categoryId !== 'undefined') {
+    questionWhere.category_id = Number(categoryId);
+  }
+
   const refineAreaCategory = await prisma.question.findMany({
     where: questionWhere,
     select: {

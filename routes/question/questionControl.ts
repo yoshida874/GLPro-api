@@ -8,15 +8,9 @@ const router = Router();
  * 指定があった場合：指定されたarea又はcategoryのquestionを返す
  */
 router.get('/', async (req: Request, res: Response): Promise<void> => {
-  let areaId = '';
-  let categoryId = '';
   try {
-    if (typeof req.query.areaId !== 'undefined') {
-      areaId = req.query.areaId.toString();
-    }
-    if (typeof req.query.categoryId !== 'undefined') {
-      categoryId = req.query.categoryId.toString();
-    }
+    const areaId = req.query.areaId?.toString();
+    const categoryId = req.query.categoryId?.toString();
     const RefineQuestion = await getRefineQuestion(areaId, categoryId);
     res.status(200).json(RefineQuestion);
   } catch (e) {
