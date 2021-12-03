@@ -144,32 +144,43 @@
 			},
 			"PostReviewBody": {
 				"properties": {
-					"user_id": {
-						"type": "number",
-						"format": "double"
-					},
-					"area_id": {
-						"type": "number",
-						"format": "double"
-					},
-					"category_id": {
-						"type": "number",
-						"format": "double"
-					},
-					"review_content": {
-						"type": "string"
-					},
-					"evaluation": {
-						"type": "number",
-						"format": "double"
+					"Reviews": {
+						"items": {
+							"properties": {
+								"evaluation": {
+									"type": "number",
+									"format": "double"
+								},
+								"review_content": {
+									"type": "string"
+								},
+								"category_id": {
+									"type": "number",
+									"format": "double"
+								},
+								"area_id": {
+									"type": "number",
+									"format": "double"
+								},
+								"user_id": {
+									"type": "number",
+									"format": "double"
+								}
+							},
+							"required": [
+								"evaluation",
+								"review_content",
+								"category_id",
+								"area_id",
+								"user_id"
+							],
+							"type": "object"
+						},
+						"type": "array"
 					}
 				},
 				"required": [
-					"user_id",
-					"area_id",
-					"category_id",
-					"review_content",
-					"evaluation"
+					"Reviews"
 				],
 				"type": "object",
 				"additionalProperties": false
