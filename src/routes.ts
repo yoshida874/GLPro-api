@@ -50,11 +50,7 @@ const models: TsoaRoute.Models = {
     "PostReviewBody": {
         "dataType": "refObject",
         "properties": {
-            "user_id": {"dataType":"double","required":true},
-            "area_id": {"dataType":"double","required":true},
-            "category_id": {"dataType":"double","required":true},
-            "review_content": {"dataType":"string","required":true},
-            "evaluation": {"dataType":"double","required":true},
+            "Reviews": {"dataType":"array","array":{"dataType":"nestedObjectLiteral","nestedProperties":{"evaluation":{"dataType":"double","required":true},"review_content":{"dataType":"string","required":true},"category_id":{"dataType":"double","required":true},"area_id":{"dataType":"double","required":true},"user_id":{"dataType":"double","required":true}}},"required":true},
         },
         "additionalProperties": false,
     },
