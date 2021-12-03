@@ -251,10 +251,18 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"items": {
-										"$ref": "#/components/schemas/GetRegion"
+									"properties": {
+										"region": {
+											"items": {
+												"$ref": "#/components/schemas/GetRegion"
+											},
+											"type": "array"
+										}
 									},
-									"type": "array"
+									"required": [
+										"region"
+									],
+									"type": "object"
 								}
 							}
 						}

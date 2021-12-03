@@ -9,8 +9,8 @@ export class RegionController extends Controller {
    * @summary 地域分類取得API
    */
   @Get('/')
-  async PostReview(): Promise<GetRegion[]> {
+  async PostReview(): Promise<{ region: GetRegion[] }> {
     const region = await getRegion();
-    return region;
+    return { region: region };
   }
 }
