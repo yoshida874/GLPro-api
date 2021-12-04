@@ -105,6 +105,53 @@
 				"type": "object",
 				"additionalProperties": false
 			},
+			"GetRefineQuestion": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"area": {
+						"properties": {
+							"area_name": {
+								"type": "string"
+							}
+						},
+						"required": [
+							"area_name"
+						],
+						"type": "object",
+						"nullable": true
+					},
+					"category": {
+						"properties": {
+							"category_name": {
+								"type": "string"
+							}
+						},
+						"required": [
+							"category_name"
+						],
+						"type": "object",
+						"nullable": true
+					},
+					"question_title": {
+						"type": "string"
+					},
+					"question_content": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"id",
+					"area",
+					"category",
+					"question_title",
+					"question_content"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
 			"GetRegion": {
 				"properties": {
 					"id": {
@@ -235,6 +282,52 @@
 						"in": "path",
 						"name": "id",
 						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/question": {
+			"get": {
+				"operationId": "GetRefineQuestion",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"anyOf": [
+										{
+											"items": {
+												"$ref": "#/components/schemas/GetRefineQuestion"
+											},
+											"type": "array"
+										},
+										{}
+									]
+								}
+							}
+						}
+					}
+				},
+				"description": "クエリ文字列で指定がなかった場合：質問を全て返す<br>\r\n指定があった場合：指定された地区又は分類の質問を返す",
+				"summary": "条件別質問取得API",
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "queryAreaId",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "queryCategoryId",
+						"required": false,
 						"schema": {
 							"type": "string"
 						}

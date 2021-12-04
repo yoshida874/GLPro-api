@@ -1,18 +1,18 @@
 import { PrismaClient } from '@prisma/client';
+import { Question, GetRefineQuestion } from './questionInterface';
 
 const prisma = new PrismaClient();
 
-interface question {
-  area_id?: number;
-  category_id?: number;
-}
-
+/**
+ * 指定がなかった場合：質問をすべて返す
+ * 指定があった場合：指定された地区又は分類の質問を返す
+ */
 export const getRefineQuestion = async (
   areaId: string | undefined,
   categoryId: string | undefined
-) => {
+): Promise<GetRefineQuestion[]> => {
   // Whereで指定する項目
-  const questionWhere: question = {};
+  const questionWhere: Question = {};
   if (typeof areaId !== 'undefined') {
     questionWhere.area_id = Number(areaId);
   }
@@ -38,5 +38,5 @@ export const getRefineQuestion = async (
       question_content: true,
     },
   });
-  return { refineAreaCategory };
+  return refineAreaCategory;
 };

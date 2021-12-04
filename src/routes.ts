@@ -5,6 +5,8 @@ import { Controller, ValidationService, FieldErrors, ValidateError, TsoaRoute, H
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { AreaController } from './area/areaController';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+import { QuestionController } from './question/questionController';
+// WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { RegionController } from './region/regionController';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { ReviewController } from './review/reviewController';
@@ -33,6 +35,18 @@ const models: TsoaRoute.Models = {
             "name": {"dataType":"string","required":true},
             "areaDetails": {"dataType":"array","array":{"dataType":"refAlias","ref":"Review"},"required":true},
             "category": {"dataType":"array","array":{"dataType":"nestedObjectLiteral","nestedProperties":{"category_name":{"dataType":"string","required":true},"id":{"dataType":"double","required":true}}},"required":true},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "GetRefineQuestion": {
+        "dataType": "refObject",
+        "properties": {
+            "id": {"dataType":"double","required":true},
+            "question_title": {"dataType":"string","required":true},
+            "question_content": {"dataType":"string","required":true},
+            "area": {"dataType":"union","subSchemas":[{"dataType":"nestedObjectLiteral","nestedProperties":{"area_name":{"dataType":"string","required":true}}},{"dataType":"enum","enums":[null]}],"required":true},
+            "category": {"dataType":"union","subSchemas":[{"dataType":"nestedObjectLiteral","nestedProperties":{"category_name":{"dataType":"string","required":true}}},{"dataType":"enum","enums":[null]}],"required":true},
         },
         "additionalProperties": false,
     },
@@ -108,6 +122,30 @@ export function RegisterRoutes(app: express.Router) {
 
 
               const promise = controller.GetAreaDetail.apply(controller, validatedArgs as any);
+              promiseHandler(controller, promise, response, undefined, next);
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.get('/question',
+
+            function QuestionController_GetRefineQuestion(request: any, response: any, next: any) {
+            const args = {
+                    queryAreaId: {"in":"query","name":"queryAreaId","dataType":"string"},
+                    queryCategoryId: {"in":"query","name":"queryCategoryId","dataType":"string"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+
+                const controller = new QuestionController();
+
+
+              const promise = controller.GetRefineQuestion.apply(controller, validatedArgs as any);
               promiseHandler(controller, promise, response, undefined, next);
             } catch (err) {
                 return next(err);
