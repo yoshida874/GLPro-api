@@ -21,7 +21,7 @@ Router ファイル更新
 `npm run router`<br>
 
 Swagger 更新  
-`npm run Swagger`<br>
+`npm run swagger`<br>
 
 Prettier  
 `npm run format`<br>
