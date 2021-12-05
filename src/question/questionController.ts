@@ -17,8 +17,8 @@ export class QuestionController extends Controller {
     try {
       const areaId = queryAreaId?.toString();
       const categoryId = queryCategoryId?.toString();
-      const RefineQuestion = await getRefineQuestion(areaId, categoryId);
-      return RefineQuestion;
+      const refineQuestion = await getRefineQuestion(areaId, categoryId);
+      return refineQuestion;
     } catch (e) {
       return this.setStatus(400);
     }

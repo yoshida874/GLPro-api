@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client';
-import { Question, GetRefineQuestion } from './questionInterface';
+import { QuestionWhere, GetRefineQuestion } from './questionInterface';
 
 const prisma = new PrismaClient();
 
@@ -12,7 +12,7 @@ export const getRefineQuestion = async (
   categoryId: string | undefined
 ): Promise<GetRefineQuestion[]> => {
   // Whereで指定する項目
-  const questionWhere: Question = {};
+  const questionWhere: QuestionWhere = {};
   if (typeof areaId !== 'undefined') {
     questionWhere.area_id = Number(areaId);
   }

@@ -1,4 +1,4 @@
-export interface Question {
+export interface QuestionWhere {
   area_id?: number;
   category_id?: number;
 }
