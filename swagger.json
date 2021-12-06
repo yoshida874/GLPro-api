@@ -105,6 +105,23 @@
 				"type": "object",
 				"additionalProperties": false
 			},
+			"GetCategory": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"category_name": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"id",
+					"category_name"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
 			"GetRefineQuestion": {
 				"properties": {
 					"id": {
@@ -298,6 +315,30 @@
 						}
 					}
 				]
+			}
+		},
+		"/category": {
+			"get": {
+				"operationId": "GetCategory",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/GetCategory"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"description": "すべての分類のidとnameを返す",
+				"summary": "分類一覧API",
+				"security": [],
+				"parameters": []
 			}
 		},
 		"/question": {
