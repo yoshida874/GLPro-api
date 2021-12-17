@@ -124,7 +124,7 @@ const updateUser = await prisma.user.update({
 
 ### Prisma studio の 起動
 
-> <font color="Green">npx prisma studio<</font>
+> <font color="Green">npx prisma studio</font>
 
 ---
 
