@@ -365,12 +365,12 @@ async function main(): Promise<void> {
   await prisma.question.upsert({
     where: { id: 1 },
     update: {
-      question_title: '質問1',
-      question_content: '質問内容1',
+      question_title: '公園',
+      question_content: '子供を1人で公園に遊びに行かせても大丈夫でしょうか。',
     },
     create: {
-      question_title: '質問1',
-      question_content: '質問内容1',
+      question_title: '公園',
+      question_content: '子供を1人で公園に遊びに行かせても大丈夫でしょうか。',
       user: {
         connect: {
           email: 'sukechan@example.com',
@@ -759,11 +759,11 @@ async function sub() {
   await prisma.review.upsert({
     where: { id: 1 },
     update: {
-      review_content: 'とても良いです',
+      review_content: 'ごみのポイ捨てなどもなく非常に良い',
       evaluation: 5,
     },
     create: {
-      review_content: 'とても良いです',
+      review_content: 'ごみのポイ捨てなどもなく非常に良い',
       evaluation: 5,
       user: {
         connect: {
@@ -784,6 +784,137 @@ async function sub() {
   });
   await prisma.review.upsert({
     where: { id: 2 },
+    update: {
+      review_content: '基本地下鉄が便利です',
+      evaluation: 4,
+    },
+    create: {
+      review_content: '基本地下鉄が便利です',
+      evaluation: 4,
+      user: {
+        connect: {
+          email: 'sukechan@example.com',
+        },
+      },
+      area: {
+        connect: {
+          area_name: '渋谷区',
+        },
+      },
+      category: {
+        connect: {
+          category_name: '交通',
+        },
+      },
+    },
+  });
+  await prisma.review.upsert({
+    where: { id: 3 },
+    update: {
+      review_content: '少し高いと思いました',
+      evaluation: 3,
+    },
+    create: {
+      review_content: '少し高いと思いました',
+      evaluation: 3,
+      user: {
+        connect: {
+          email: 'sukechan@example.com',
+        },
+      },
+      area: {
+        connect: {
+          area_name: '渋谷区',
+        },
+      },
+      category: {
+        connect: {
+          category_name: '物価',
+        },
+      },
+    },
+  });
+  await prisma.review.upsert({
+    where: { id: 4 },
+    update: {
+      review_content: '子供が遊ぶところが多く満足しています。',
+      evaluation: 4,
+    },
+    create: {
+      review_content: '子供が遊ぶところが多く満足しています。',
+      evaluation: 4,
+      user: {
+        connect: {
+          email: 'sukechan@example.com',
+        },
+      },
+      area: {
+        connect: {
+          area_name: '渋谷区',
+        },
+      },
+      category: {
+        connect: {
+          category_name: '子育て',
+        },
+      },
+    },
+  });
+  await prisma.review.upsert({
+    where: { id: 5 },
+    update: {
+      review_content: '全体的に高いと思います。',
+      evaluation: 2,
+    },
+    create: {
+      review_content: '全体的に高いと思います。',
+      evaluation: 2,
+      user: {
+        connect: {
+          email: 'sukechan@example.com',
+        },
+      },
+      area: {
+        connect: {
+          area_name: '渋谷区',
+        },
+      },
+      category: {
+        connect: {
+          category_name: '家賃',
+        },
+      },
+    },
+  });
+  await prisma.review.upsert({
+    where: { id: 6 },
+    update: {
+      review_content: 'いろいろなものが揃っていて大体のものが手に入ると思います。',
+      evaluation: 5,
+    },
+    create: {
+      review_content: 'いろいろなものが揃っていて大体のものが手に入ると思います。',
+      evaluation: 5,
+      user: {
+        connect: {
+          email: 'sukechan@example.com',
+        },
+      },
+      area: {
+        connect: {
+          area_name: '渋谷区',
+        },
+      },
+      category: {
+        connect: {
+          category_name: '品揃え',
+        },
+      },
+    },
+  });
+
+  await prisma.review.upsert({
+    where: { id: 7 },
     update: {
       review_content: '良いです',
       evaluation: 4,
@@ -809,7 +940,7 @@ async function sub() {
     },
   });
   await prisma.review.upsert({
-    where: { id: 3 },
+    where: { id: 8 },
     update: {
       review_content: '普通です',
       evaluation: 3,
@@ -835,7 +966,7 @@ async function sub() {
     },
   });
   await prisma.review.upsert({
-    where: { id: 4 },
+    where: { id: 9 },
     update: {
       review_content: '少し悪いです',
       evaluation: 2,
@@ -861,7 +992,7 @@ async function sub() {
     },
   });
   await prisma.review.upsert({
-    where: { id: 5 },
+    where: { id: 10 },
     update: {
       review_content: '悪いです',
       evaluation: 1,
@@ -886,6 +1017,165 @@ async function sub() {
       },
     },
   });
+  await prisma.review.upsert({
+    where: { id: 11 },
+    update: {
+      review_content:
+        'そこまで危険ではありませんが、駅周辺の夜道は暗く人通りも少ないので、できるだけ避けた方が良いです。',
+      evaluation: 3,
+    },
+    create: {
+      review_content:
+        'そこまで危険ではありませんが、駅周辺の夜道は暗く人通りも少ないので、できるだけ避けた方が良いです。',
+      evaluation: 3,
+      user: {
+        connect: {
+          email: 'kyosuke@example.com',
+        },
+      },
+      area: {
+        connect: {
+          area_name: '渋谷区',
+        },
+      },
+      category: {
+        connect: {
+          category_name: '治安',
+        },
+      },
+    },
+  });
+  await prisma.review.upsert({
+    where: { id: 12 },
+    update: {
+      review_content: '自転車などの貸し出しがべ便利です',
+      evaluation: 4,
+    },
+    create: {
+      review_content: '自転車などの貸し出しがべ便利です',
+      evaluation: 4,
+      user: {
+        connect: {
+          email: 'kyosuke@example.com',
+        },
+      },
+      area: {
+        connect: {
+          area_name: '渋谷区',
+        },
+      },
+      category: {
+        connect: {
+          category_name: '交通',
+        },
+      },
+    },
+  });
+  await prisma.review.upsert({
+    where: { id: 13 },
+    update: {
+      review_content: '都内だから少し高いが、節約すれば大丈夫。',
+      evaluation: 4,
+    },
+    create: {
+      review_content: '都内だから少し高いが、節約すれば大丈夫。',
+      evaluation: 4,
+      user: {
+        connect: {
+          email: 'kyosuke@example.com',
+        },
+      },
+      area: {
+        connect: {
+          area_name: '渋谷区',
+        },
+      },
+      category: {
+        connect: {
+          category_name: '物価',
+        },
+      },
+    },
+  });
+  await prisma.review.upsert({
+    where: { id: 14 },
+    update: {
+      review_content: '公園だけでなく、室内の遊び場も多くあって良い。',
+      evaluation: 4,
+    },
+    create: {
+      review_content: '公園だけでなく、室内の遊び場も多くあって良い。',
+      evaluation: 4,
+      user: {
+        connect: {
+          email: 'kyosuke@example.com',
+        },
+      },
+      area: {
+        connect: {
+          area_name: '渋谷区',
+        },
+      },
+      category: {
+        connect: {
+          category_name: '子育て',
+        },
+      },
+    },
+  });
+  await prisma.review.upsert({
+    where: { id: 15 },
+    update: {
+      review_content: '高いところもあるが探せば安いところもある',
+      evaluation: 3,
+    },
+    create: {
+      review_content: '高いところもあるが探せば安いところもある',
+      evaluation: 3,
+      user: {
+        connect: {
+          email: 'kyosuke@example.com',
+        },
+      },
+      area: {
+        connect: {
+          area_name: '渋谷区',
+        },
+      },
+      category: {
+        connect: {
+          category_name: '家賃',
+        },
+      },
+    },
+  });
+  await prisma.review.upsert({
+    where: { id: 16 },
+    update: {
+      review_content: 'それなりに便利だと思います',
+      evaluation: 4,
+    },
+    create: {
+      review_content: 'それなりに便利だと思います',
+      evaluation: 4,
+      user: {
+        connect: {
+          email: 'kyosuke@example.com',
+        },
+      },
+      area: {
+        connect: {
+          area_name: '渋谷区',
+        },
+      },
+      category: {
+        connect: {
+          category_name: '品揃え',
+        },
+      },
+    },
+  });
+
   // AnswerSeedCreate
   await prisma.answer.upsert({
     where: { id: 1 },
@@ -1058,15 +1348,17 @@ async function sub() {
   await prisma.answer.upsert({
     where: { id: 9 },
     update: {
-      answer_title: '回答9',
-      answer_content: '回答内容9',
+      answer_title: '安心な街づくり',
+      answer_content:
+        '警察官が頻繁にパトロールや交通取り締まりを行っているので、安心できると思います。',
     },
     create: {
-      answer_title: '回答9',
-      answer_content: '回答内容9',
+      answer_title: '安心な街づくり',
+      answer_content:
+        '警察官が頻繁にパトロールや交通取り締まりを行っているので、安心できると思います。',
       user: {
         connect: {
-          email: 'kyosuke@example.com',
+          email: 'taiki@example.com',
         },
       },
       question: {
