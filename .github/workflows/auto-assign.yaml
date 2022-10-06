@@ -4,7 +4,7 @@ on:
     types: [opened, ready_for_review]
 jobs:
   add-reviews:
-    if: github.actor != 'yoshida874'
+    if: github.actor == 'yoshida874'
     runs-on: ubuntu-latest
     steps:
       - name: Assignees and Reviewers to PR
